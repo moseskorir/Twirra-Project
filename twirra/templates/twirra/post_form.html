@@ -1,0 +1,10 @@
+{% extends "twirra/base.html" %}
+
+{% block content %}
+    <form method="POST" class=form-group>
+        <legend class="border-bottom mb-4">Add a Tweet</legend>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Post</button>
+    </form>
+{% endblock %}

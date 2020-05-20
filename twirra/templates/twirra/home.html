@@ -1,0 +1,7 @@
+{% extends "twirra/base.html" %}
+{% block content %}
+    {% for post in posts %}
+        <p href="{% url 'user-posts' post.author.username %}">By {{ post.author}} on {{ post.date_posted }}</p>
+        <p>{{ post.content }}</p>
+    {% endfor %}
+{% endblock content %}
