@@ -1,0 +1,21 @@
+{% extends "twirra/base.html" %}
+
+{% block content %}
+   <div class="cotainer">
+       <h1>Profile Info</h1>
+       <p><img src ="{{ user.profile.image.url }}" ></p>
+       <p1>Username: {{ user }}</p1>
+       <p>Email: {{ user.email}}</p>
+       <p>Bio: {{ user.bio }}</p>
+       <p>Location: {{ user.location }}</p>
+   </div>
+   <div>
+       <form method="POST" enctype="multipart/form-data" class=form-group>
+           <legend>Profile Info</legend>
+            {% csrf_token %}
+            {{ u_form.as_p }}
+            {{ p_form.as_p }}
+            <button type="submit" class="btn btn-success">Update</button>
+        </form>
+   </div>
+{% endblock %}

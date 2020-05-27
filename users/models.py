@@ -8,4 +8,4 @@ class Profile(models.Model):
     location = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):
-        return self.user.username
+        return f'{self.user.username} Profile'

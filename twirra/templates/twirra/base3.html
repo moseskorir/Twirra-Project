@@ -20,18 +20,33 @@
         <div class="nav-wrapper">
           <a href="{% url 'twirra-home' %}" class="brand-logo">MyTwirra</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    {% if user.is_authenticated %}
-                        <li><a href="{% url 'post-create' %}">Add Tweet</a></li>
-                        <li><a href="{% url 'profile' %}">Profile</a></li>
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
-
-                    {% else %}
-                        <li><a href="{% url 'register' %}">Register</a></li>
-                        <li><a href="{% url 'login' %}">Login</a></li>
-                    {% endif %}
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
                 </ul>
         </div>
     </nav>
+    {% if user.is_authenticated %}
+        <div class="row">
+            <div class="container">
+                <ul id="slide-out" class="sidenav sidenav-fixed">
+                    <li><div class="user-view">
+                    <div class="background">
+                        <img src="media/background.jpg">
+                    </div>
+                    <a href="#user"><img class="circle" src="{{ user.profile.image.url }}"></a>
+                    <a href="#name"><span class="white-text name">user.username</span></a>
+                    <a href="#email"><span class="white-text email">User.email</span></a>
+                    </div class="nav">
+                    <li><a href="{% url 'profile' %}">Home</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                </ul>
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(".button-collapse").sideNav();
+        </script> 
+    {% endif %}
 
       <div>
         {% block content %}{% endblock %}

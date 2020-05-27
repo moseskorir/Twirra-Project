@@ -1,12 +1,22 @@
 {% extends "twirra/base.html" %}
 
 {% block content %}
-   <div class="cotainer">
-       <h1>Profile</h1>
-       <p><img src ="{{ user.profile.image.url }}" ></p>
-       <p1>Username: {{ user }}</p1>
-       <p>Email: {{ user.email}}</p>
-       <p>Bio: {{ user.bio }}</p>
-       <p>Location: {{ user.location }}</p>
-   </div>>
+   <div class="content-section">
+       <div class="media">
+           <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+           <div class="media-body">
+               <h2 class="account-heading">{{ user.username }}</h2>
+               <p class="text-secondary">{{ user.email }}</p>
+               <p class="text-secondary">{{ user.bio }}</p>
+               <p class="text-secondary">{{ user.location }}</p>
+           </div>
+       </div>
+       <form method="POST" enctype="multipart/form-data" class=form-group>
+            <legend>Profile Info</legend>
+            {% csrf_token %}
+            {{ u_form.as_p }}
+            {{ p_form.as_p }}
+            <button type="submit" class="btn btn-success">Update</button>
+        </form>
+   </div>
 {% endblock %}

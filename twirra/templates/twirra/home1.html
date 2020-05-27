@@ -1,0 +1,28 @@
+{% extends "twirra/base.html" %}
+{% block content %}
+    <div class="row">
+        <div class="container">
+            <ul id="slide-out" class="sidenav sidenav-fixed">
+                <li><div class="user-view">
+                <div class="background">
+                    <img src="media/background.jpg">
+                </div>
+                <a href="#user"><img class="circle" src="{{ user.profile.image.url }}"></a>
+                <a href="#name"><span class="white-text name">{{ user.username }}</span></a>
+                <a href="#email"><span class="white-text email">{{ User.email }}</span></a>
+                </div class="nav">
+                <li><a href="{% url 'profile' %}">Home</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+            </ul>
+            <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(".button-collapse").sideNav();
+    </script>
+
+    {% for post in posts %}
+        <p href="{% url 'user-posts' post.author.username %}">By {{ post.author}} on {{ post.date_posted }}</p>
+        <p>{{ post.content }}</p>
+    {% endfor %}
+{% endblock content %}

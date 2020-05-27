@@ -1,7 +1,20 @@
 {% extends "twirra/base.html" %}
 {% block content %}
     {% for post in posts %}
-        <p href="{% url 'user-posts' post.author.username %}">By {{ post.author}} on {{ post.date_posted }}</p>
-        <p>{{ post.content }}</p>
+        <div class="col s12 m8 offset-m2 l6 offset-l3">
+            <div class="card-panel grey lighten-5 z-depth-1">
+            <div class="row valign-wrapper">
+                <div class="col s2">
+                <img src="{{ user.profile.image.url }}" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+                </div>
+                <div class="col s10">
+                <span class="black-text">
+                    <p href="{% url 'user-posts' post.author.username %}">By {{ post.author}} on {{ post.date_posted }}</p>
+                    <p>{{ post.content }}</p>
+                </span>
+                </div>
+            </div>
+            </div>
+        </div>
     {% endfor %}
 {% endblock content %}
